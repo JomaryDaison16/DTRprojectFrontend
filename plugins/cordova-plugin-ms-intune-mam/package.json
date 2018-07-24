@@ -1,0 +1,65 @@
+{
+  "_from": "cordova-plugin-ms-intune-mam@~1.2.0",
+  "_id": "cordova-plugin-ms-intune-mam@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-mSmmsAupeOlJsLlvUkHpPXRx9MY=",
+  "_location": "/cordova-plugin-ms-intune-mam",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-ms-intune-mam@~1.2.0",
+    "name": "cordova-plugin-ms-intune-mam",
+    "escapedName": "cordova-plugin-ms-intune-mam",
+    "rawSpec": "~1.2.0",
+    "saveSpec": null,
+    "fetchSpec": "~1.2.0"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ms-intune-mam/-/cordova-plugin-ms-intune-mam-1.2.0.tgz",
+  "_shasum": "9929a6b00ba978e949b0b96f5241e93d7471f4c6",
+  "_spec": "cordova-plugin-ms-intune-mam@~1.2.0",
+  "_where": "C:\\Users\\JDaison\\Documents\\OJTproject\\hello",
+  "author": {
+    "name": "Microsoft"
+  },
+  "bugs": {
+    "url": "https://github.com/msintuneappsdk/cordova-plugin-ms-intune-mam/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-ms-intune-mam",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": "Package no longer supported. Contact support@npmjs.com for more info.",
+  "description": "Microsoft Intune App SDK Cordova plugin",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/msintuneappsdk/cordova-plugin-ms-intune-mam#readme",
+  "keywords": [
+    "Cordova",
+    "Microsoft",
+    "Intune",
+    "MAM",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "SEE LICENSE IN Intune_App_SDK_Cordova_plugin_RTM_license.pdf",
+  "name": "cordova-plugin-ms-intune-mam",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msintuneappsdk/cordova-plugin-ms-intune-mam.git"
+  },
+  "version": "1.2.0"
+}

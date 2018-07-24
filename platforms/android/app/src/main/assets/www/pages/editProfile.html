@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 240%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+
+<body>
+
+<!--NAVIGATION-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Edit Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--NAVIGATION-->
+
+<!--BODY-->  
+<div class="container-fluid text-center">    
+  <div class="row content">
+
+    <!--LEFT BODY-->
+    <div class="col-sm-2 sidenav">
+    </div>
+    <!--LEFT BODY-->
+
+    <div class="col-sm-8 text-left"> 
+      <h1>Edit Employee Inforamtion</h1>
+      <p></p>
+      <hr>
+        <p>
+          <label for="fname">First Name:</label>
+            <input type="text" name="fname" class="form-control" id="fname"><br><br>
+          <label for="mname">Middle Name:</label>
+            <input type="text" name="mname" class="form-control" id="mname"><br><br>
+          <label for="lname">Last Name:</label>
+            <input type="text" name="lname" class="form-control" id="lname"><br><br>
+          <label for="position">Positions:</label>
+            <input type="text" name="position" class="form-control" id="position"><br><br>
+          <label for="contact">Contact No.:</label>
+            <input type="text" name="contact" class="form-control" id="contact"><br><br>
+          <label for="code">Employee Code:</label>
+            <input type="text" name="code" class="form-control" id="code"><br><br>
+          <label for="email">Email Address:</label>
+            <input type="text" name="email" class="form-control" id="email"><br><br>
+          <label for="birth_date">Birthdate:</label>
+            <input type="date" name="birth_date" class="form-control" id="birth_date"><br><br>
+          <label for="gender">Gender:</label>
+            <label><input type="radio" name="gender" id="gender" value="male"> Male </label>
+            <label><input type="radio" name="gender" id="gender" value="female"> Female </label><br><br> 
+          <label for="address">Address:</label>
+            <input type="text" name="address" class="form-control" id="address"><br>
+        </p>
+        <button type="submit" class="btn btn-primary btn-block" onclick="submit()">Edit</button>
+    </div>
+
+    <!--RIGHT BODY-->
+    <div class="col-sm-2 sidenav">
+    </div>
+    <!--RIGHT BODY-->
+  </div>
+</div>
+<!--BODY-->
+
+<!--FOOTER-->
+<footer class="container-fluid text-center">
+  <p>Developed by: Jomary Daison, Jerald Talledo, and Charlin Bugas</p>
+</footer>
+<!--FOOTER-->
+
+<!--SCRIPTS-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  function submit(){
+    y = localStorage.getItem('index1'); 
+    $.ajax({
+      url: "https://mighty-cove-44634.herokuapp.com/edit/"+y,
+      // url: "http://127.0.0.1:5050/edit/login-time",
+
+      contentType: 'application/json; charset=utf-8',
+      method:  'POST',
+      dataType: 'json',
+      crossDomain: true,
+      data: JSON.stringify({
+        'fname':$('#fname').val(),
+        'mname':$('#mname').val(),
+        'lname':$('#lname').val(),
+        'position':$('#position').val(),
+        'contact':$('#contact').val(), 
+        'code':$('#code').val(),
+        'email':$('#email').val(),
+        'birth_date':$('#birth_date').val(),
+        'gender':$('#gender').val(),
+        'address':$('#address').val()
+      }),
+      success: function(data){
+        alert(data.message)
+        window.open('employees.html','_self');
+      },   
+      error: function () {
+        alert("Failed to Edit!")
+      }
+    });
+  }
+</script>
+<script type="text/javascript">
+  function logout(){
+    $.ajax({
+      url: "https://mighty-cove-44634.herokuapp.com/logout",
+      method:  'GET',
+      crossDomain: true,
+      success: function(data){
+        alert(data.message);
+        window.location.assign('../index.html');
+      },
+      error: function () {
+        alert("Action Failed!");
+      }
+    });
+  }
+</script>
+<!--SCRIPTS-->
+
+</body>
+</html>

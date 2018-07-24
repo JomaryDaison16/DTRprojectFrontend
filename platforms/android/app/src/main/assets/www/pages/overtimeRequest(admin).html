@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Approval</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<!-- <link rel="shortcut icon" href="../overtimeApproval/img/favicon.ico" type="image/x-icon"> -->
+<!-- <link rel="apple-touch-icon" href="../overtimeApproval/img/apple-touch-icon.png"> -->
+<!-- <link rel="apple-touch-icon" sizes="72x72" href="../overtimeApproval/img/apple-touch-icon-72x72.png"> -->
+<!-- <link rel="apple-touch-icon" sizes="114x114" href="../overtimeApproval/img/apple-touch-icon-114x114.png"> -->
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="../overtimeApproval/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../overtimeApproval/fonts/font-awesome/css/font-awesome.css">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="../overtimeApproval/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Header -->
+<header id="header">
+  <div class="intro">
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="intro-text">
+                <h2><span style="color: #fff;">OVERTIME REQUESTS</span></h2>
+                <button type="button" onclick="employeeLog()">asdasd</button>
+                <table class="table table-bordered">
+                  <thead style="color: #fff;">
+                    <tr>
+                      <th>Name</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody style="color: #fff;">
+                    <script type="text/javascript">
+                     function employeeLog() {
+                           $(document).ready(function () {
+                              $.getJSON("https://mighty-cove-44634.herokuapp.com/view/overtime/requests", function (data) {
+                                 if (data.message == 'No request found'){
+                                    alert(data.message);
+                                 } else {
+                                    alert(data[0]);
+                                    var employee_data = "";
+                                    $.each(data, function (i, key) {
+                                       for (var i = 0; i < key.length; i++) {
+                                          employee_data += '<tr>';
+                                          employee_data += '<td>' + key[i].name + '</td>';
+                                          employee_data += '<td>' + key[i].date + '<td>';
+                                          // employee_data += '<td>' + '< a onclick = "approve()" > <span style="color: #0FE508">Approve</span></a > | <a onclick="reject()"><span style="color: red">Reject'+'</span>'+'</a>'+'<td>';
+                                          employee_data += '</tr>';
+                                       }
+                                    });
+
+                                    $('#employee_table').append(employee_data);
+                                 }
+                              });
+                           });
+                        }
+                    </script>
+
+                     <tr>
+                      <td id="code"></td>
+                      <td id="date"></td>
+                      <td id="time-in"></td>
+                      <td id="time-out"></td>
+                      <td><h3><a onclick="approve()"><span style="color: #0FE508">Approve</span></a> | <a onclick="reject()"><span style="color: red">Reject</span></a></h3></td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+      </div>
+            <script type="text/javascript">
+               function approve() {
+                  y = localStorage.getItem('index1');
+                  $.ajax({
+                     url: "https://mighty-cove-44634.herokuapp.com/overtime/request",
+                     // url: "http://127.0.0.1:5050/edit/login-time",
+
+                     contentType: 'application/json; charset=utf-8',
+                     method: 'POST',
+                     dataType: 'json',
+                     crossDomain: true,
+                     data: JSON.stringify({
+                        'id': y,
+                     }),
+
+                     success: function (data) {
+                        alert(data.message)
+                        window.open('_self');
+                     },
+                     error: function () {
+                        alert("error")
+                     }
+
+                  });
+               }
+            </script>
+    </div>
+  </div>
+</header>
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript" src="../scripts/jquery.min.js"></script>
+<script type="text/javascript" src="../overtimeApproval/js/bootstrap.js"></script> 
+<!-- <script type="text/javascript" src="../overtimeApproval/js/SmoothScroll.js"></script>  -->
+<script type="text/javascript" src="../overtimeApproval/js/jqBootstrapValidation.js"></script> 
+<!-- <script type="text/javascript" src="../overtimeApproval/js/contact_me.js"></script>  -->
+<script type="text/javascript" src="../overtimeApproval/js/main.js"></script>
+</body>
+</html>
